@@ -44,7 +44,16 @@ def get_min_salary(path: str) -> int:
     int
         The minimum salary paid out of all job opportunities
     """
-    raise NotImplementedError
+    # raise NotImplementedError
+    job_list = read(path)
+    salary_list = min(
+        [
+            int(row["min_salary"])
+            for row in job_list
+            if "min_salary" in row and row["min_salary"].isdigit()
+        ]
+    )
+    return salary_list
 
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
